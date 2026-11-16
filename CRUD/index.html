@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>CRUD Ultra Simple</h2>
+
+    <!-- Formulario para Crear -->
+    <form method="POST" action="/crear">
+        <input name="nombre" placeholder="Nuevo Nombre" required>
+        <button>Guardar</button>
+    </form>
+
+    <!-- Lista de Personas -->
+    <ul>
+        {{range .}}
+        <li>
+            ID: {{.ID}} | Nombre: {{.Nombre}}
+            
+            <!-- Formulario para Actualizar -->
+            <form method="POST" action="/actualizar" style="display:inline;">
+                <input type="hidden" name="id" value="{{.ID}}">
+                <input name="nuevo_nombre" value="{{.Nombre}}">
+                <button>Editar</button>
+            </form>
+
+            <!-- Formulario para Eliminar -->
+            <form method="POST" action="/eliminar" style="display:inline;">
+                <input type="hidden" name="id" value="{{.ID}}">
+                <button>X</button>
+            </form>
+        </li>
+        {{end}}
+    </ul>
+</body>
+</html>
